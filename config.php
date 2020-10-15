@@ -2,8 +2,8 @@
 
 //WEB CONFIG
 $WEB_CONFIG = [
-	'app_name' => 'Member APP', 
-	'base_url' => 'http://localhost:8080/DTS-Project-Akhir/'
+	'app_name' => 'Admin APP', 
+	'base_url' => 'http://localhost/DTS-Tugas-akhir/'
 ];
 
 //DATABASE CONFIG

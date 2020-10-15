@@ -19,13 +19,13 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item active">
+			<li class="nav-item ">
 				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>">Mahasiswa </span></a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item ">
 				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>dosen.php">Dosen</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>BO.php">BO</a>
 			</li>
 			<li class="nav-item">
@@ -43,7 +43,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2">
-				<h4 class='text-uppercase'><?= $content ?> Data mahasiswa</h4>
+				<h4 class='text-uppercase'><?= $content ?> Data bo</h4>
 			</div>
 			<div class="col-md-10">
 			<?php
@@ -54,16 +54,16 @@
 
 				switch ($content) {
 					case 'add':
-						require 'operasi/create.php';
+						require 'operasi_bo/create.php';
 						break;
 					case 'delete':
-						require 'operasi/delete.php';
+						require 'operasi_bo/delete.php';
 						break;
 					case 'update':
-						require 'operasi/update.php';
+						require 'operasi_bo/update.php';
 						break;
 					default:
-						require 'operasi/read.php';
+						require 'operasi_bo/read.php';
 						break;
 				} 
 			?>
@@ -74,18 +74,3 @@
 	<script type="text/javascript" src="assets/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-	<!-- <nav class="navbar navbar-light bg-light fixed-top">
-		<div class="row">
-			<div class="col-6 bg-danger">					
-				<a class="navbar-brand" href="#">
-					<img src="<?= $WEB_CONFIG['base_url'] ?>assets/img/icon.png" width="80" alt="">
-					<?= $WEB_CONFIG['app_name'] ?>
-				</a>
-			</div>
-			<div class="col-6 bg-danger">
-				<a href="<?= $WEB_CONFIG['base_url'] ?>dosen.php ">Dosen</a>
-			</div>
-		</div>
-	</nav> -->

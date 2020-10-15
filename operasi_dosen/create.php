@@ -1,6 +1,4 @@
 <?php 
-require 'config.php';
-
 $namaErr = $usernameErr = $passwordErr = $emailErr = "";
 if(isset($_POST['save'])){
 	if(!isset($_POST['nama']) || !isset($_POST['username']) || !isset($_POST['password']) || !$_POST['email']){
@@ -22,19 +20,19 @@ if(isset($_POST['save'])){
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 
-		$query = "INSERT INTO user (nama,username,password,email) VALUES('$nama', '$username', '$password', '$email')";
+		$query = "INSERT INTO dosen (nama,username,password,email) VALUES('$nama', '$username', '$password', '$email')";
 		if (mysqli_query($connect, $query)) {
 			$_SESSION['flash'] = "<div class=\"alert alert-success\" role=\"alert\">Data berhasil ditambahkan</div>";
-			header("location:".$WEB_CONFIG['base_url']."index.php");
+			header("location:".$WEB_CONFIG['base_url']."dosen.php");
 		}else{
 			$_SESSION['flash'] = "<div class=\"alert alert-danger\" role=\"alert\">Data gagal ditambahkan</div>";
-			header("location:".$WEB_CONFIG['base_url']."index.php");
+			header("location:".$WEB_CONFIG['base_url']."dosen.php");
 		}
-	}
+}
 }
 ?>
 
-<a href="<?= $WEB_CONFIG['base_url'] ?>" class="btn btn-warning mb-3">
+<a href="<?= $WEB_CONFIG['base_url'] ?>dosen.php" class="btn btn-warning mb-3">
 	<svg style="width:20px;height:20px" viewBox="0 0 24 24" class="mb-1">
 		<path fill="#000000" d="M2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12M18,11H10L13.5,7.5L12.08,6.08L6.16,12L12.08,17.92L13.5,16.5L10,13H18V11Z" />
 	</svg> Back To Data
