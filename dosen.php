@@ -19,17 +19,17 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav ml-auto">
-			<li class="nav-item ">
-				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>">Mahasiswa </span></a>
+		<li class="nav-item">
+				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>">Mahasiswa</a>
 			</li>
 			<li class="nav-item active">
 				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>dosen.php">Dosen</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>BO.php">BO</a>
+				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>prodi.php">Prodi</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>Satpam.php">Satpam</a>
+				<a class="nav-link" href="<?= $WEB_CONFIG['base_url'] ?>matkul.php">Matkul</a>
 			</li>
 		</ul>
 	</div>

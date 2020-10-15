@@ -1,26 +1,25 @@
 <?php 
 $namaErr = $usernameErr = $passwordErr = $emailErr = "";
 if(isset($_POST['save'])){
-	if(!isset($_POST['nama']) || !isset($_POST['username']) || !isset($_POST['password']) || !$_POST['email']){
-		if($_POST['nama'] == ""){
+	if($_POST['nama'] == ""){
 		$namaErr = "Nama tidak boleh kosong!";
-		}
-		if($_POST['username'] == ""){
-			$usernameErr = "Username tidak boleh kosong!";
-		}
-		if($_POST['password'] == ""){
-			$passwordErr = "Password tidak boleh kosong!";
-		}
-		if($_POST['email'] == ""){
-			$emailErr = "Email tidak boleh kosong!";
-		}
+	}
+	if($_POST['username'] == ""){
+		$usernameErr = "Username tidak boleh kosong!";
+	}
+	if($_POST['password'] == ""){
+		$passwordErr = "Password tidak boleh kosong!";
+	}
+	if($_POST['email'] == ""){
+		$emailErr = "Email tidak boleh kosong!";
 	}else{
+		$nip = $_POST['nip'];
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 
-		$query = "INSERT INTO dosen (nama,username,password,email) VALUES('$nama', '$username', '$password', '$email')";
+		$query = "INSERT INTO dosen (nip, nama, username, password, email) VALUES('$nip', '$nama', '$username', '$password', '$email')";
 		if (mysqli_query($connect, $query)) {
 			$_SESSION['flash'] = "<div class=\"alert alert-success\" role=\"alert\">Data berhasil ditambahkan</div>";
 			header("location:".$WEB_CONFIG['base_url']."dosen.php");
@@ -28,7 +27,7 @@ if(isset($_POST['save'])){
 			$_SESSION['flash'] = "<div class=\"alert alert-danger\" role=\"alert\">Data gagal ditambahkan</div>";
 			header("location:".$WEB_CONFIG['base_url']."dosen.php");
 		}
-}
+	}
 }
 ?>
 
@@ -40,23 +39,28 @@ if(isset($_POST['save'])){
 <div class="container">
 	<form action="" method="post">
 		<div class="form-group">
+			<label for="inputNama">NIP</label>
+			<input type="text" name="nip" class="form-control" id="inputNama" maxlength="40" autofocus>
+			<small class="text-danger"><?= $namaErr == "" ? "":" *$namaErr " ?></small>
+		</div>
+		<div class="form-group">
 			<label for="inputNama">Nama</label>
-			<input type="text" name="nama" class="form-control" id="inputNama" maxlength="40" required autofocus>
-			<small class="text-danger"><?= $namaErr == "" ? "":"* $namaErr " ?></small>
+			<input type="text" name="nama" class="form-control" id="inputNama" maxlength="40" autofocus>
+			<small class="text-danger"><?= $namaErr == "" ? "":" *$namaErr " ?></small>
 		</div>
 		<div class="form-group">
 			<label for="inputUsername">Username</label>
-			<input type="username" name="username" class="form-control" id="inputUsername" maxlength="30" required>
+			<input type="username" name="username" class="form-control" id="inputUsername" maxlength="30" >
 			<small class="text-danger"><?= $usernameErr == "" ? "":"* $usernameErr" ?></small>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword">Password</label>
-			<input type="password" name="password" class="form-control" id="inputPassword" maxlength="30" minlength="3" required>
+			<input type="password" name="password" class="form-control" id="inputPassword" maxlength="30" minlength="3" >
 			<small class="text-danger"><?= $passwordErr == "" ? "":"* $passwordErr" ?></small>
 		</div>
 		<div class="form-group">
 			<label for="inputEmail">Email</label>
-			<input type="email" name="email" class="form-control" id="inputEmail" maxlength="50" required>
+			<input type="text" name="email" class="form-control" id="inputEmail" maxlength="50" >
 			<small class="text-danger"><?= $emailErr == "" ? "":"* $emailErr" ?></small>
 		</div>
 		<input type="submit" class="btn btn-dark m-1" name="save" value="Save Now!">

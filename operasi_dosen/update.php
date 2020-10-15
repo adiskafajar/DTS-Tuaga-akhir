@@ -1,7 +1,10 @@
 <?php 
-$namaErr = $usernameErr = $passwordErr = $emailErr = "";
+$nipErr = $namaErr = $usernameErr = $passwordErr = $emailErr = "";
 if(isset($_POST['save'])){
 	if(!isset($_POST['nama']) || !isset($_POST['username']) || !isset($_POST['password']) || !$_POST['email']){
+		if($_POST['nip'] == ""){
+		$nipErr = "NIP tidak boleh kosong!";
+		}
 		if($_POST['nama'] == ""){
 		$namaErr = "Nama tidak boleh kosong!";
 		}
@@ -15,14 +18,14 @@ if(isset($_POST['save'])){
 			$emailErr = "Email tidak boleh kosong!";
 		}
 	}else{
-		$id = $_GET['id'];
+		$nip = $_GET['nip'];
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 
 		$query = "INSERT INTO dosen (nama,username,password,email) VALUES('$nama', '$username', '$password', '$email')";
-		$query = "UPDATE dosen SET nama='$nama', username='$username', password='$password', email='$email' WHERE id=$id";
+		$query = "UPDATE dosen SET nama='$nama', username='$username', password='$password', email='$email' WHERE nip=$nip";
 		if (mysqli_query($connect, $query)) {
 			$_SESSION['flash'] = "<div class=\"alert alert-success\" role=\"alert\">Data berhasil diubah</div>";
 			header("location:".$WEB_CONFIG['base_url']."dosen.php");
@@ -33,8 +36,8 @@ if(isset($_POST['save'])){
 	}
 }
 
-$id = $_GET['id'];
-$query = "SELECT * FROM dosen WHERE id = $id";
+$nip = $_GET['nip'];
+$query = "SELECT * FROM dosen WHERE nip = $nip";
 $result = mysqli_query($connect, $query);
 $data = mysqli_fetch_array($result);
 
@@ -47,6 +50,10 @@ $data = mysqli_fetch_array($result);
 </a>
 <div class="container">
 	<form action="" method="post">
+		<div class="form-group">
+			<label for="inputNama">NIP</label>
+			<input type="text" name="nip" class="form-control-plaintext border-0 shadow-none" id="inputNama" value="<?= $data['nip'] ?>" maxlength="40" required autofocus readonly>
+		</div>
 		<div class="form-group">
 			<label for="inputNama">Nama</label>
 			<input type="text" name="nama" class="form-control" id="inputNama" value="<?= $data['nama'] ?>" maxlength="40" required autofocus>

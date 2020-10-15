@@ -15,14 +15,14 @@ if(isset($_POST['save'])){
 			$emailErr = "Email tidak boleh kosong!";
 		}
 	}else{
-		$id = $_GET['id'];
+		$nim = $_GET['nim'];
 		$nama = $_POST['nama'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$email = $_POST['email'];
 
-		$query = "INSERT INTO user (nama,username,password,email) VALUES('$nama', '$username', '$password', '$email')";
-		$query = "UPDATE user SET nama='$nama', username='$username', password='$password', email='$email' WHERE id=$id";
+		$query = "INSERT INTO mahasiswa (nama,username,password,email) VALUES('$nama', '$username', '$password', '$email')";
+		$query = "UPDATE mahasiswa SET nama='$nama', username='$username', password='$password', email='$email' WHERE nim=$nim";
 		if (mysqli_query($connect, $query)) {
 			$_SESSION['flash'] = "<div class=\"alert alert-success\" role=\"alert\">Data berhasil diubah</div>";
 			header("location:".$WEB_CONFIG['base_url']."index.php");
@@ -33,12 +33,12 @@ if(isset($_POST['save'])){
 	}
 }
 
-$id = $_GET['id'];
-$query = "SELECT * FROM user WHERE id = $id";
+$nim = $_GET['nim'];
+$query = "SELECT * FROM mahasiswa WHERE nim = $nim";
 $result = mysqli_query($connect, $query);
 $data = mysqli_fetch_array($result);
 
- ?>
+?>
 
 <a href="<?= $WEB_CONFIG['base_url'] ?>" class="btn btn-warning mb-3">
 	<svg style="width:20px;height:20px" viewBox="0 0 24 24">
@@ -47,6 +47,10 @@ $data = mysqli_fetch_array($result);
 </a>
 <div class="container">
 	<form action="" method="post">
+		<div class="form-group">
+			<label for="inputNama">NIM</label>
+			<input type="text" name="nama" class="form-control-plaintext border-0 shadow-none" id="inputNama" value="<?= $data['nim'] ?>" maxlength="40" required readonly>
+		</div>
 		<div class="form-group">
 			<label for="inputNama">Nama</label>
 			<input type="text" name="nama" class="form-control" id="inputNama" value="<?= $data['nama'] ?>" maxlength="40" required autofocus>

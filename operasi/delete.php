@@ -1,7 +1,7 @@
 <?php 
 
-$delete_id = $_GET['id'];
-$query = "DELETE FROM user WHERE id='$delete_id'";
+$nim = $_GET['nim'];
+$query = "DELETE FROM mahasiswa WHERE nim='$nim'";
 
 if(mysqli_query($connect, $query)){
 	$_SESSION['flash'] = "<div class=\"alert alert-success\" role=\"alert\">Data telah terhapus</div>";
